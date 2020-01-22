@@ -1,20 +1,23 @@
 import anvil # https://pypi.org/project/anvil-parser/ 
 import math
 
-region = anvil.Region.from_file('r.0.0.mca') # region file(needs to be in the same folder)
-
-cBlocks = [["grass",0,0,0],["dirt",0,-1,0],["stone",1,1,0],["stone",1,2,0]] # blocks to check(Offs are relative to 0,0,0 block) [id,xOff,yOff,zOff]
-
-ymin = 55 # range for y coordinates of the search
-ymax = 90
+try:
+    region = anvil.Region.from_file('r.0.0.mca') # region file(needs to be in the same folder)
+except Exception:
+    print("The region file cant be found")
+    exit()
 
 RegionX = 0 # region coordinates of the file (r.X.Z.mca)
 RegionZ = 0
 
+cBlocks = [["grass",0,0,0],["dirt",0,-1,0],["stone",1,1,0],["stone",1,2,0]] # blocks to check(Offs are relative to 0,0,0 block) [id,xOff,yOff,zOff]
 
+ymin = 62 # range for y coordinates of the search
+ymax = 63
+
+# =====
 
 chunk = 0
-
 outs = []
 
 for cX in range(32):
